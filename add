@@ -1,0 +1,55 @@
+# import requests
+
+# url = "https://10.184.53.226:8006/api2/json/access/users"
+# headers = {
+#     "Authorization": "PVEAPIToken=root@pam\!mytoken=1067ea32-17b0-4ce6-8705-7bf177439492
+# }
+# data = {
+#     "userid": "demo@pve",
+#     "password": "demo@1234",
+#     "groups": "Admin"
+# }
+
+# response = requests.post(url, headers=headers, data=data, verify=False)
+# print(response.json())
+
+
+import requests
+
+# Proxmox server details
+proxmox_host = 'https://10.184.53.226:8006'  # Replace with your Proxmox server
+api_user = 'root@pam'  # Your API user and realm
+api_token_id = 'mytoken'    # Your API token ID
+api_token = '1067ea32-17b0-4ce6-8705-7bf177439492'       # Your API token value
+
+# New user details
+new_user = 'demo@pve'     # New username
+new_password = 'demo@1234'      # New user's password
+new_group = 'Admin'            # Optional: Group for the new user
+
+# Construct the API URL
+url = f"{proxmox_host}/api2/json/access/users"
+
+# Set the authorization header
+headers = {
+    "Authorization": f"PVEAPIToken={api_user}!{api_token_id}={api_token}"
+}
+
+# Prepare the data for the new user
+data = {
+    "userid": new_user,
+    "password": new_password,
+    "groups": new_group
+}
+
+try:
+    # Make the POST request to add the new user
+    response = requests.post(url, headers=headers, data=data, verify=False)
+    
+    # Check for successful response
+    if response.status_code == 200:
+        print("User added successfully!")
+    else:
+        print(f"Failed to add user: {response.json()}")
+except requests.exceptions.RequestException as e:
+    print(f"An error occurred: {e}")

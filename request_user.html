@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User Request</title>
+    <link rel="stylesheet" href="styles.scss"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Request to Add User</h1>
+        <form id="userRequestForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Send Request</button>
+        </form>
+        <div id="responseMessage"></div>
+    </div>
+
+    <script src="scrip.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
